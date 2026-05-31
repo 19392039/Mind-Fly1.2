@@ -29,28 +29,31 @@ Mind-Fly_1.2/
 
 ## 环境准备
 
-建议使用 Python 虚拟环境：
+本项目主要面向华为云 ModelArts 的 MindSpore + Ascend 环境，当前未在本地 PC 环境完整验证。建议在 ModelArts Notebook 或训练作业中运行，优先选择已预装 MindSpore 的 Ascend 镜像。
+
+推荐环境：
+
+```text
+平台：华为云 ModelArts
+框架：MindSpore
+硬件：Ascend
+Python：以 ModelArts 镜像内置版本为准
+```
+
+进入 ModelArts Notebook 后，将项目代码上传或从 GitHub 克隆到工作目录：
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+git clone https://github.com/19392039/Mind-Fly1.2.git
+cd Mind-Fly1.2
 ```
 
-Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-安装常用依赖：
+如果镜像中缺少训练日志相关依赖，可以补充安装：
 
 ```bash
-pip install -U pip
-pip install numpy tensorboard tensorboardX
+pip install tensorboard tensorboardX
 ```
 
-然后根据运行设备安装对应版本的 MindSpore。训练配置默认使用 Ascend：
+训练配置默认使用 Ascend：
 
 ```json
 {
@@ -58,7 +61,7 @@ pip install numpy tensorboard tensorboardX
 }
 ```
 
-如果在 CPU 环境调试，可以把 `config/train_config.json` 中的 `device` 改为 `CPU`。
+如需在非 Ascend 环境做轻量调试，可以尝试把 `config/train_config.json` 中的 `device` 改为 `CPU`，但本项目未保证本地 CPU 环境可完整复现训练效果。
 
 ## 训练
 
