@@ -1,0 +1,95 @@
+{
+    "device": "Ascend",
+    "env_config": "env_config.json",
+    "sampling": {
+        "batch_env": 64,
+        "rollout_len": 256,
+        "reset_each_rollout": true
+    },
+    "ppo": {
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "bootstrap": true,
+        "clip_range": 0.2,
+        "clip_range_final": 0.1,
+        "lr": 0.0003,
+        "value_lr": 0.0003,
+        "lr_schedule": "linear",
+        "lr_min_ratio": 0.1,
+        "entropy_coef": 0.05,
+        "entropy_coef_final": 0.02,
+        "entropy_decay_progress": 0.9,
+        "min_entropy": "auto",
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "minibatch_size": 512,
+        "amp": false,
+        "amp_bf16": true,
+        "collision_done": true,
+        "log_std_min": -2.0,
+        "log_std_max": 1.0,
+        "value_clip": true,
+        "grad_norm_adapt": true,
+        "adam_eps": 1e-5,
+        "log_std_weight_decay": 0.0,
+        "nan_skip": true,
+        "kl_target": 0.015,
+        "kl_early_stop": true,
+        "min_recovery_steps": 2000,
+        "max_collapse_count": 5,
+        "advantage_clip": 10.0,
+        "gae_lambda_explore": 0.98,
+        "entropy_safe_threshold": 0.3
+    },
+    "model": {
+        "num_queries": 4,
+        "num_heads": 4
+    },
+    "run": {
+        "total_env_steps": 5000000,
+        "ckpt_dir": "runs/ppo_exp2/",
+        "log_interval": 10000
+    },
+    "diagnostics": {
+        "stagnation_window": 10,
+        "stagnation_threshold": 1e-4,
+        "relative_stagnation_threshold": 0.05,
+        "kl_warning_threshold": 0.02,
+        "vf_drift_threshold": 1.0
+    },
+    "curriculum": {
+        "enabled": true,
+        "stage_hold_windows": 5,
+        "fallback_threshold": 0.002,
+        "skip_on_stall": false,
+        "skip_after_steps": 1000000,
+        "stages": [
+            {
+                "blank_ratio_base": 60.0,
+                "narrow_passage_std_ratio": 0.3,
+                "task_point_max_dist_m": 8.0,
+                "success_threshold": 0.01
+            },
+            {
+                "blank_ratio_base": 50.0,
+                "narrow_passage_std_ratio": 0.2,
+                "task_point_max_dist_m": 15.0,
+                "success_threshold": 0.01
+            },
+            {
+                "blank_ratio_base": 40.0,
+                "narrow_passage_std_ratio": 0.15,
+                "task_point_max_dist_m": 30.0,
+                "success_threshold": 0.01
+            }
+        ]
+    },
+    "intrinsic_reward": {
+        "w_intrinsic": 0.05,
+        "visit_count_grid_size": 1.0,
+        "visit_count_max_entries": 50000,
+        "intrinsic_decay_start": 0.6,
+        "intrinsic_decay_range": 0.2
+    }
+}

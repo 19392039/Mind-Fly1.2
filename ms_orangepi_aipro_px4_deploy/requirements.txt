@@ -1,0 +1,4 @@
+numpy
+pymavlink
+pyserial
+rplidar-roboticia

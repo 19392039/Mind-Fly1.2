@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Notebook and editor cache
+.ipynb_checkpoints/
+.vscode/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Training outputs and local logs
+runs/
+*.log
+*.ckpt
+events.out.tfevents.*
+
+# OS files
+.DS_Store
+Thumbs.db

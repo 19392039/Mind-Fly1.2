@@ -1,0 +1,44 @@
+{
+  "limits": {
+    "vx_max": 0.6,
+    "omega_max": 1.5
+  },
+  "sim": {
+    "dt": 0.1,
+    "safe_distance": 0.8,
+    "task_point_max_dist_m": 30.0,
+    "task_point_success_radius_m": 0.35,
+    "task_point_random_interval_max": 50
+  },
+  "reward": {
+    "reward_collision": 3.0,
+    "reward_progress": 1.0,
+    "reward_limits": 0.15,
+    "orientation_verify": true,
+    "reward_jerk": 5e-4,
+    "reward_jerk_omega": 5e-4,
+    "reward_time": 0.01,
+    "w_success": 2.0,
+    "w_intrinsic": 0.05,
+    "danger_distance": 1.2,
+    "reward_danger": 0.4,
+    "reward_danger_speed": 1.0,
+    "reward_speed_match": 1.5,
+    "stop_distance": 0.35,
+    "max_reward_component": 3.0
+  },
+  "obs": {
+    "n_rays": 128,
+    "ray_max_gap": 0.6,
+    "patch_meters": 10.0,
+    "blank_ratio_base": 40.0,
+    "blank_ratio_randmax": 50.0,
+    "blank_ratio_std_ratio": 0.2,
+    "narrow_passage_gaussian": true,
+    "narrow_passage_std_ratio": 0.15,
+    "front_obstacle_prob": 0.2,
+    "front_obstacle_width_ratio": 0.18,
+    "front_obstacle_min_m": 0.25,
+    "front_obstacle_max_m": 1.0
+  }
+}
